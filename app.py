@@ -45,7 +45,7 @@ if uploaded_file is not None:
     if prediction >= threshold:
         label = "Cancer: Yes"
         color = (255, 0, 0)  # Red
- else:
+else:
         label = "Cancer: No"
         color = (0, 255, 0)  # Green
 
