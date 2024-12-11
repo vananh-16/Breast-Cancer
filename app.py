@@ -41,12 +41,12 @@ if uploaded_file is not None:
 
     # Ngưỡng: nếu >=0.5 là "Cancer: Yes", ngược lại "Cancer: No"
 	threshold = 0.5
-		if prediction >= threshold:
-			label = "Cancer: Yes"
-			color = (255, 0, 0)  # Red
-		else:
-			label = "Cancer: No"
-			color = (0, 255, 0)  # Green
+	if prediction >= threshold:
+		label = "Cancer: Yes"
+		color = (255, 0, 0)  # Red
+	else:
+		label = "Cancer: No"
+		color = (0, 255, 0)  # Green
 
     # Chuyển ảnh sang OpenCV format để vẽ rectangle
 	img_cv = np.array(img)
@@ -62,9 +62,10 @@ if uploaded_file is not None:
 
     # Chuyển BGR -> RGB để hiển thị trên Streamlit
 	img_rgb = cv2.cvtColor(img_with_text, cv2.COLOR_BGR2RGB)
-else:
-    st.write("Hãy upload một ảnh để tiếp tục.")
 
-st.write("Kết quả dự đoán:")
-st.image(img_rgb, use_column_width=True)
-st.write(f"Dự đoán: {label} (Giá trị dự đoán: {prediction:.4f})")
+
+	st.write("Kết quả dự đoán:")
+	st.image(img_rgb, use_column_width=True)
+	st.write(f"Dự đoán: {label} (Giá trị dự đoán: {prediction:.4f})")
+else:
+	st.write("Hãy upload một ảnh để tiếp tục.")
