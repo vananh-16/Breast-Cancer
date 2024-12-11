@@ -66,7 +66,7 @@ if uploaded_file is not None:
 
 
 	st.write("Kết quả dự đoán:")
-	st.image(img_rgb, use_column_width=True)
+	st.image(img_rgb, use_container_width=True)
 	st.write(f"Dự đoán: {label} (Giá trị dự đoán: {prediction:.4f})")
 else:
 	st.write("Hãy upload một ảnh để tiếp tục.")
