@@ -33,9 +33,9 @@ else:
 	st.write("Hãy upload một ảnh để tiếp tục.")
 
     # Tiền xử lý ảnh cho model
-img_resized = img.resize((224, 224))
-img_array = image.img_to_array(img_resized)/255.0
-img_array = np.expand_dims(img_array, axis=0)
+	img_resized = img.resize((224, 224))
+	img_array = image.img_to_array(img_resized)/255.0
+	img_array = np.expand_dims(img_array, axis=0)
 
     # Dự đoán
 prediction = model.predict(img_array)[0][0]
