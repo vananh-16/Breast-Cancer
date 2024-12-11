@@ -25,7 +25,7 @@ uploaded_file = st.file_uploader("Chọn một file ảnh (jpg/png)", type=["jpg
 
 if uploaded_file is not None:
     # Đọc file ảnh từ bộ nhớ
-img = Image.open(uploaded_file).convert('RGB')
+	img = Image.open(uploaded_file).convert('RGB')
  # Hiển thị ảnh gốc
 	st.write("Ảnh đã upload:")
 	st.image(img, use_column_width=True)
