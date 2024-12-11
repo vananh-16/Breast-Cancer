@@ -34,35 +34,36 @@ if uploaded_file is not None:
 	img_resized = img.resize((224, 224))
 	img_array = image.img_to_array(img_resized)/255.0
 	img_array = np.expand_dims(img_array, axis=0)
-else:
-	st.write("Hãy upload một ảnh để tiếp tục.")
 
-    # Dự đoán
-prediction = model.predict(img_array)[0][0]
+
+	    # Dự đoán
+	prediction = model.predict(img_array)[0][0]
 
     # Ngưỡng: nếu >=0.5 là "Cancer: Yes", ngược lại "Cancer: No"
-threshold = 0.5
-if prediction >= threshold:
-	label = "Cancer: Yes"
-	color = (255, 0, 0)  # Red
-else:
-	label = "Cancer: No"
-	color = (0, 255, 0)  # Green
+	threshold = 0.5
+		if prediction >= threshold:
+			label = "Cancer: Yes"
+			color = (255, 0, 0)  # Red
+		else:
+			label = "Cancer: No"
+			color = (0, 255, 0)  # Green
 
     # Chuyển ảnh sang OpenCV format để vẽ rectangle
-img_cv = np.array(img)
-img_cv = cv2.cvtColor(img_cv, cv2.COLOR_RGB2BGR)
+	img_cv = np.array(img)
+	img_cv = cv2.cvtColor(img_cv, cv2.COLOR_RGB2BGR)
 
     # Vẽ một bounding box lên ảnh (đơn giản là khung viền quanh ảnh)
-height, width, _ = img_cv.shape
-padding = 50
-start_point = (padding, padding)
-img_with_rectangle = cv2.rectangle(img_cv.copy(), start_point, end_point, color, 5)
+	height, width, _ = img_cv.shape
+	padding = 50
+	start_point = (padding, padding)
+	img_with_rectangle = cv2.rectangle(img_cv.copy(), start_point, end_point, color, 5)
  # Vẽ label
-img_with_text = cv2.putText(img_with_rectangle, label, (50, height - 60), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2, cv2.LINE_AA)
+	img_with_text = cv2.putText(img_with_rectangle, label, (50, height - 60), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2, cv2.LINE_AA)
 
     # Chuyển BGR -> RGB để hiển thị trên Streamlit
-img_rgb = cv2.cvtColor(img_with_text, cv2.COLOR_BGR2RGB)
+	img_rgb = cv2.cvtColor(img_with_text, cv2.COLOR_BGR2RGB)
+else:
+    st.write("Hãy upload một ảnh để tiếp tục.")
 
 st.write("Kết quả dự đoán:")
 st.image(img_rgb, use_column_width=True)
