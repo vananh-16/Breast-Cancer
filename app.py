@@ -28,7 +28,7 @@ if uploaded_file is not None:
 	img = Image.open(uploaded_file).convert('RGB')
  # Hiển thị ảnh gốc
 	st.write("Ảnh đã upload:")
-	st.image(img, use_column_width=True)
+	st.image(img, use_container_width=True)
 
     # Tiền xử lý ảnh cho model
 	img_resized = img.resize((224, 224))
@@ -56,6 +56,7 @@ if uploaded_file is not None:
 	height, width, _ = img_cv.shape
 	padding = 50
 	start_point = (padding, padding)
+	end_point = (width - padding, height - padding)
 	img_with_rectangle = cv2.rectangle(img_cv.copy(), start_point, end_point, color, 5)
  # Vẽ label
 	img_with_text = cv2.putText(img_with_rectangle, label, (50, height - 60), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2, cv2.LINE_AA)
