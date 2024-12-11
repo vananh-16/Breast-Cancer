@@ -29,13 +29,13 @@ if uploaded_file is not None:
  # Hiển thị ảnh gốc
 	st.write("Ảnh đã upload:")
 	st.image(img, use_column_width=True)
-else:
-	st.write("Hãy upload một ảnh để tiếp tục.")
 
     # Tiền xử lý ảnh cho model
 	img_resized = img.resize((224, 224))
 	img_array = image.img_to_array(img_resized)/255.0
 	img_array = np.expand_dims(img_array, axis=0)
+else:
+	st.write("Hãy upload một ảnh để tiếp tục.")
 
     # Dự đoán
 prediction = model.predict(img_array)[0][0]
